@@ -1,4 +1,6 @@
 #include<sys/types.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 #define MAXTHREAD 3
 
@@ -34,6 +36,10 @@ typedef struct SEMAPHOR{
 	
 }SEM;
 
+void initsem (SEM * s){
+	s->count=1;
+	_initqueue(&(s->blocked));
+}
 void waitsem (SEM * s){
 	s->count--;
 	if(s->count <0){
